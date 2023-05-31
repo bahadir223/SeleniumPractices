@@ -17,37 +17,42 @@ public class C07_ManageWindowSet {
     Sayfanin sizin istediginiz konum ve boyuta geldigini test edin
     8. Sayfayi kapatin
      */
-    public static void main(String[] args) {
-        System.setProperty("chromedriver", "src/Resources/drivers/chromedriver.exe");
-        WebDriver myDriver = new ChromeDriver();
-        myDriver.manage().window().maximize();
-        myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        //    Amazon soyfasina gidelim. https://www.amazon.com/
-        myDriver.get("https://www.amazon.com/");
+    public static void main(String[] args) throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "src/resources/drivers/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        Thread.sleep(3000);
 
-        //    Sayfanin konumunu ve boyutlarini yazdirin
-        Point actualPosition= myDriver.manage().window().getPosition();
-        Dimension actualSize = myDriver.manage().window().getSize();
+        //Amazon soyfasina gidelim. https://www.amazon.com/
+        driver.get("https://www.amazon.com/");
+
+        //Sayfanin konumunu ve boyutlarini yazdirin
+        System.out.println("Amazon Sayfasinin Konumu : " + driver.manage().window().getPosition());
+        System.out.println("Amazon Sayfasinin Boyutlari : " + driver.manage().window().getSize());
 
         //Sayfanin konumunu ve boyutunu istediginiz sekilde ayarlayin
-        myDriver.manage().window().setPosition(new Point(400,400));
-        myDriver.manage().window().setSize(new Dimension(1000,700));
+        driver.manage().window().setPosition(new Point(148, 148));
+        driver.manage().window().setSize(new Dimension(800, 600));
+        Thread.sleep(3000);
 
-        //Sayfanin sizin istediginiz konum ve boyuta geldigini test edin.
+        //Sayfanin sizin istediginiz konum ve boyuta geldigini test edin
+        Dimension newSize = driver.manage().window().getSize();
+        Point newPosition = driver.manage().window().getPosition();
 
-         myDriver.manage().window().getPosition();
-         myDriver.manage().window().getSize();
+        if (newPosition.getX() == 148 && newPosition.getY() == 148) {
+            System.out.println("KONUM TESTI PASSED");
+        } else System.out.println("KONUM TESTI FAIL" + newPosition);
 
-        System.out.println("Degistirdigim poziyon : "+actualPosition);
-        System.out.println("Degistirdigim Boyut:"+actualSize);
-
-        if (actualPosition.equals(myDriver.manage().window().getPosition())){
-            System.out.println("Test PASSED");
-
-        }else System.out.println("Test FAILED");
-
-
+        if (newSize.getHeight() == 600 & newSize.getWidth() == 800) {
+            System.out.println("BOYUT TESTI PASSED");
+        } else {
+            System.out.println("BOYUT TESTI FAIL" + newSize);
+        }
+        //8. Sayfayi kapatin
+        driver.close();
     }
-
 }
+
+
+
