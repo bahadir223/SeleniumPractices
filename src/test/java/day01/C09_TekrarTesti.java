@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class TekrarTesti {
+public class C09_TekrarTesti {
     /*
     /*ODEV-->6
     Yeni bir class olusturun (TekrarTesti)

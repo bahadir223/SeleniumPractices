@@ -16,22 +16,22 @@ public class C05_NavigationMethods {
         System.setProperty("chromedriver", "src/Resources/drivers/chromedriver.exe");
 
         //Youtube ana sayfasina gidelim . https://www.youtube.com/
-        Utils.myDriver.get("https://www.youtube.com/");
+        C04_Utils.myDriver.get("https://www.youtube.com/");
 
         //Amazon soyfasina gidelim. https://www.amazon.com/
-        Utils.myDriver.get("https://www.amazon.com/");
+        C04_Utils.myDriver.get("https://www.amazon.com/");
 
         //Tekrar YouTube’sayfasina donelim
-        Utils.myDriver.navigate().back();
+        C04_Utils.myDriver.navigate().back();
 
         //Yeniden Amazon sayfasina gidelim
-        Utils.myDriver.navigate().forward();
+        C04_Utils.myDriver.navigate().forward();
 
         //Sayfayi Refresh(yenile) yapalim
-        Utils.myDriver.navigate().refresh();
+        C04_Utils.myDriver.navigate().refresh();
 
         //Tum sayfalari kapatalim
-        Utils.myDriver.quit();
+        C04_Utils.myDriver.quit();
 
 
     }
