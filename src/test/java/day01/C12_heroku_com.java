@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C12_ {
+public class C12_heroku_com {
     /*
     //https://id.heroku.com/login sayfasina gidin
 //Bir mail adersi giriniz
