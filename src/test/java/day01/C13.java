@@ -43,8 +43,10 @@ public class C13 {
          */
 
         // Add Element butonuna 100 defa basıldığını test ediniz
-        List<WebElement> deleteButton = driver.findElements(By.xpath("//*[text()='Delete']"));
+        List<WebElement> deleteButton = driver.findElements(By.xpath("//*[text()='Delete']"));//yani text'i delete olanları bir liste attık
         int deleteButtonSayisi = deleteButton.size();
+        System.out.println(deleteButtonSayisi);
+
         if (deleteButtonSayisi == 100) {
             System.out.println("Test PASSED");
         } else {
