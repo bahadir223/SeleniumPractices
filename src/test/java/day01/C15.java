@@ -1,5 +1,6 @@
 package day01;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ public class C15 {
 18. 'HESAP SİLİNDİ!' görünür ve 'Devam Et' düğmesini tıklayın
  */
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/resources/drivers/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -101,7 +102,6 @@ public class C15 {
 
         //ve 'Devam Et' düğmesini tıklayın
         driver.findElement(By.xpath("//*[text()='Continue']")).click();
-
 
 
         driver.close();
