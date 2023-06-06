@@ -1,4 +1,4 @@
-package KendiCalismalarim;
+package GrupCalismalarimiz;
 
 public class C20 {
     /*

@@ -1,4 +1,4 @@
-package KendiCalismalarim;
+package GrupCalismalarimiz;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;

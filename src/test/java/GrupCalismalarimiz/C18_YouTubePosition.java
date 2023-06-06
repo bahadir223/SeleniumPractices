@@ -1,4 +1,4 @@
-package KendiCalismalarim;
+package GrupCalismalarimiz;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
