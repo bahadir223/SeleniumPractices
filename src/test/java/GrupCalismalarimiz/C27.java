@@ -52,9 +52,7 @@ public class C27 {
     @Test
     public void test02() {
         driver.findElement(By.id("APjFqb")).sendKeys("Lord of the Rings", Keys.ENTER);
-        driver.findElement(By.xpath("//a//em")).click();
-        driver.findElement(By.xpath("(//*[text()='Türkçe sayfalarda ara'])[1]")).click();
-        driver.findElement(By.xpath("//*[text()='Herhangi bir dil']")).click();
+        driver.navigate().refresh();
         WebElement sonucYazisi = driver.findElement(By.xpath("//*[@id='result-stats']"));
         String sonuc = sonucYazisi.getText();
         String[] arr = sonuc.split(" ");
