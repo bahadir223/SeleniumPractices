@@ -50,8 +50,9 @@ public class C27 {
     }
 
     @Test
-    public void test02() {
+    public void test02() throws InterruptedException {
         driver.findElement(By.id("APjFqb")).sendKeys("Lord of the Rings", Keys.ENTER);
+        Thread.sleep(3000);
         driver.navigate().refresh();
         WebElement sonucYazisi = driver.findElement(By.xpath("//*[@id='result-stats']"));
         String sonuc = sonucYazisi.getText();
@@ -60,8 +61,9 @@ public class C27 {
     }
 
     @Test
-    public void test03() {
+    public void test03() throws InterruptedException {
         driver.findElement(By.id("APjFqb")).sendKeys("Kill Bill", Keys.ENTER);
+        Thread.sleep(3000);
         driver.navigate().refresh();
         WebElement sonucYazisi = driver.findElement(By.xpath("//*[@id='result-stats']"));
         String sonuc = sonucYazisi.getText();
