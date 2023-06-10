@@ -36,12 +36,11 @@ public class C01 {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.get("https://www.kitapyurdu.com");
     }
 
     @Test
     public void test01() {
-        //www.kitapyurdu.com sitesine git
-        driver.get("https://www.kitapyurdu.com");
         //Arama motorunda Java ara,
         driver.findElement(By.xpath("//*[@id='search-input']")).sendKeys("Java", Keys.ENTER);
         //Arama sonuçlarının java ile ilgili olduğunu doğrula
@@ -58,6 +57,7 @@ public class C01 {
         Assert.assertTrue(actualTitle.contains(expectedTitle));
         //Sepete ekle butonuna tıkla
         driver.findElement(By.xpath("//*[@id='button-cart']")).click();
+        bekle(3);
         //Sepetinizde butonun göründüğünü doğrula
         WebElement sepetinizde = driver.findElement(By.xpath("(//*[text()='Sepetinizde'])[2]"));
         Assert.assertTrue(sepetinizde.isDisplayed());
@@ -67,13 +67,25 @@ public class C01 {
         bekle(3);
         //Açılan menüdeki sepete git butonuna tıkla
         driver.findElement(By.xpath("//*[@id='js-cart']")).click();
+        bekle(3);
         //Sepetim sayfasının açıldığını doğrula
         String actualTitle2 = driver.getTitle();
         Assert.assertEquals("Sepetim", actualTitle2);
         //Seçilen ürünün sepette olduğunu doğrula
         WebElement secilenUrun = driver.findElement(By.xpath("//*[text()='Yeni Başlayanlar için Java (Eğitim Videolu) ']"));
         Assert.assertTrue(secilenUrun.isDisplayed());
+        // Sepetteki ürünü seç
+        driver.findElement(By.xpath("(//*[@type='checkbox'])[2]")).click();
+        bekle(2);
+        // Sepetteki ürünü silmek için "x" butonuna tıkla.
+        driver.findElement(By.cssSelector("i[title='Kaldır']")).click();
+        bekle(2);
+        // Sepetteki ürünün silindiğini doğrula.
+        WebElement sepCikariliyor = driver.findElement(By.xpath("//*[@id='swal2-title']"));
+        Assert.assertTrue(sepCikariliyor.isDisplayed());
+
     }
+
 
     @After
     public void tearDown() throws Exception {
