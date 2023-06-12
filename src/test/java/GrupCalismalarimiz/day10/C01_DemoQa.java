@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C01 {
+public class C01_DemoQa {
     /*
     https://demoqa.com/ adresıne gıt
     Elemets sekmesını locate et ve tıkla
