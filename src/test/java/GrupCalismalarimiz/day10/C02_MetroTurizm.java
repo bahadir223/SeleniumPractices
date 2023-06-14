@@ -90,8 +90,16 @@ public class C02_MetroTurizm {
         //Dönüş seferi seç butonuna tıkla.
         driver.findElement(By.xpath("(//*[@id='btnChooseReturnJourney'])[1]")).click();
 
+        //En üstteki sefere tıkla.
+        driver.findElement(By.xpath("(//*[@class='btn btn-select ngSelectJourneyReturn'])[1]")).click();
+        bekle(2);
+        List<WebElement> bosKoltuklar2 = driver.findElements(By.cssSelector("[ng-click='selectSeat(col,'true','true','false')']"));
+        for (int i = 0; i < 4; i++) {
+            bosKoltuklar2 = driver.findElements(By.cssSelector("[ng-click='selectSeat(col,'true','true','false')']"));
+            bosKoltuklar2.get(i).click();
 
-         //  locate ==>     (//*[@class="btn btn-select ngSelectJourneyReturn"])[1]
+        }
+
 
     }
 
