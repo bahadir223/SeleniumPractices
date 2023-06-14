@@ -81,6 +81,7 @@ public class C02_MetroTurizm {
         for (int i = 0; i < 5; i++) {
             bosKoltuklar = driver.findElements(By.xpath("//*[@ng-if='!col.isSold']"));
             bosKoltuklar.get(i).click();
+            bekle(1);
             //System.out.println("Seçilen  = " + (i+1) + ".koltuk = " + bosKoltuklar.get(i).getText());
         }
         bekle(2);
@@ -93,12 +94,19 @@ public class C02_MetroTurizm {
         //En üstteki sefere tıkla.
         driver.findElement(By.xpath("(//*[@class='btn btn-select ngSelectJourneyReturn'])[1]")).click();
         bekle(2);
-        List<WebElement> bosKoltuklar2 = driver.findElements(By.cssSelector("[ng-click='selectSeat(col,'true','true','false')']"));
+        //4 tane boş koltuk seç
+        /*
+        //*[@ng-click="selectSeat(col,'true','true','false')"]  ==> Boş koltukların listinin tutulduğu locate
+         */
+        List<WebElement> bosKoltuklarim;
         for (int i = 0; i < 4; i++) {
-            bosKoltuklar2 = driver.findElements(By.cssSelector("[ng-click='selectSeat(col,'true','true','false')']"));
-            bosKoltuklar2.get(i).click();
-
+            bosKoltuklarim = driver.findElements(By.xpath("//*[@ng-click=\"selectSeat(col,'true','true','false')\"]"));
+            bosKoltuklarim.get(i).click();
+            bekle(2);
         }
+        bekle(3);
+        //ödeme sayfasına geç'e tıkla.
+        driver.findElement(By.xpath("(//*[@id='btnDoPaymentPage'])[2]")).click();
 
 
     }
