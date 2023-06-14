@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 public class C01_DownloadFile extends TestBase {
     /*
@@ -17,9 +18,7 @@ public class C01_DownloadFile extends TestBase {
         driver.get("https://demoqa.com/upload-download");
         //download button'una tiklayin.
         driver.findElement(By.id("downloadButton")).click();
-        String downloadPath = "C:\\Users\\bahad\\Downloads";
-        String fileName="sampleFile.jpeg";
+        bekle(5);
 
-        //File file = new File()
     }
 }
