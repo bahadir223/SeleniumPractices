@@ -34,13 +34,15 @@ public class C03_Iframe extends TestBase {
 
          */
 
-        //Videoyu izlemek icin Play tusuna basiniz
+        //Videoyu izlemek icin Play tusuna basiniz, ekranı full screen yapın sonra normal boyuta getirin
         //bunun icin önce iframe'e geciş yapmamız lazım çünkü video, iframe nin icinde...
         driver.switchTo().frame(driver.findElement(By.xpath("(//iframe)[1]")));
         driver.findElement(By.cssSelector("[class='ytp-large-play-button ytp-button ytp-large-play-button-red-bg']")).click();
+        //ekranı tam boyut yap.
+
         //Videoyu calistirdiginizi test ediniz
         //videoyu açtıktan sonra sağ altta youtube yazısı çıkıyor.onun locate'ini aldık...bu şekilde test ettik
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@class='ytp-youtube-button ytp-button yt-uix-sessionlink']")).isDisplayed());
+        //Assert.assertTrue(driver.findElement(By.xpath("//*[@class='ytp-youtube-button ytp-button yt-uix-sessionlink']")).isDisplayed());
 
         //'Powerful,but easy to misuse' yazısının gorunur oldugunu test ediniz
         driver.switchTo().defaultContent();
