@@ -27,6 +27,8 @@ public class C03_Iframe extends TestBase {
         driver.switchTo().frame(driver.findElement(By.xpath("(//iframe)[1]")));
         driver.findElement(By.cssSelector("[class='ytp-large-play-button ytp-button ytp-large-play-button-red-bg']")).click();
         //Videoyu calistirdiginizi test ediniz
+        //videoyu açtıktan sonra sağ altta youtube yazısı çıkıyor.onun locate'ini aldık...
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@class='ytp-youtube-button ytp-button yt-uix-sessionlink']")).isDisplayed());
 
         //'Powerful,but easy to misuse' yazısının gorunur oldugunu test ediniz
         driver.switchTo().defaultContent();
