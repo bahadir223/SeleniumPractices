@@ -6,9 +6,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
@@ -119,8 +121,14 @@ public class C02_MetroTurizm {
         bekle(3);
         //ödeme sayfasına geç'e tıkla.
         driver.findElement(By.xpath("(//*[@id='btnDoPaymentPage'])[2]")).click();
-        String kalkisTarihi = driver.findElement(By.cssSelector("span[id='spanBoarding']")).getText();
-        System.out.println("buraya yaz!!!!"+kalkisTarihi);
+        bekle(3);
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        bekle(2);
+        //String kalkisTarihi = driver.findElement(By.xpath("(//tbody//tr//span)[3]")).getText();
+        String kalkisTarihi = driver.findElement(By.cssSelector("[id='spanBoarding']")).getText();
+
+        System.out.println("buraya yaz.."+kalkisTarihi);
         /*
         String[] arr = kalkisTarihi.split(" ");
         String[] arr2 =arr[0].split(".");
