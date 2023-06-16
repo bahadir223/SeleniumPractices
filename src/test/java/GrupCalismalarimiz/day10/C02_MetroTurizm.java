@@ -55,21 +55,26 @@ public class C02_MetroTurizm {
         selectNereye.selectByIndex(14);
 
         //gidis tarihine o günün tarihi sec
+
         driver.findElement(By.xpath("(//*[@class='fa fa-calendar'])[1]")).click();
-        WebElement secilengidisTarih = driver.findElement(By.xpath("//*[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']"));
-        secilengidisTarih.click();
-        //System.out.println(driver.findElement(By.cssSelector("[id='inpSearchJourneyBusReturnDate']")).getText());
-        /*
-        int kacinciGun = LocalDate.now().getDayOfMonth();
-        Assert.assertEquals(kacinciGun, Integer.parseInt(secilengidisTarih.getText()));
-        System.out.println(Integer.parseInt(secilengidisTarih.getText()));
-        */
+        WebElement secilenTarih = driver.findElement(By.xpath("//*[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']"));
+        System.out.println("gidis tarihi : " + secilenTarih.getText());
+        int intGidisTarihi = Integer.parseInt(secilenTarih.getText());
+        int nowDay = LocalDate.now().getDayOfMonth();
+        System.out.println("nowDay = " + nowDay);
+        secilenTarih.click();
+        Assert.assertEquals(nowDay, intGidisTarihi);
+
+
         //donus tarihini o günün tarihi sec
         driver.findElement(By.xpath("(//*[@class='fa fa-calendar'])[2]")).click();
-        WebElement secilenDonusTarih = driver.findElement(By.xpath("//*[@class=\"  ui-datepicker-today\"]"));
-        secilenDonusTarih.click();
-        //Assert.assertEquals(LocalDate.now(), secilenDonusTarih.getText());
-        //System.out.println("bu hangisi = " + secilenDonusTarih.getText());
+        WebElement donusTarihi = driver.findElement(By.xpath("//*[@class=\"  ui-datepicker-today\"]"));
+        System.out.println("dönüstarihi : " + donusTarihi.getText());
+        int donusTarihi2 = Integer.parseInt(donusTarihi.getText());
+        int nowDay1 = LocalDate.now().getDayOfMonth();
+        System.out.println("nowDay1 = " + nowDay1);
+        donusTarihi.click();
+        Assert.assertEquals(nowDay1, donusTarihi2);
 
         //Listele'ye tıkla
         driver.findElement(By.id("btnIndexSearchJourneys")).click();
@@ -135,7 +140,7 @@ public class C02_MetroTurizm {
         //String kalkisTarihi = driver.findElement(By.xpath("(//tbody//tr//span)[3]")).getText();
         String kalkisTarihi = driver.findElement(By.cssSelector("[id='spanBoarding']")).getText();
 
-        System.out.println("buraya yaz.." + kalkisTarihi);
+        System.out.println("Kalkış Tarihiniz ==> " + kalkisTarihi);
 
         String[] arr = kalkisTarihi.split("\\.");//16.06.2023 21:30
         System.out.println(Arrays.toString(arr));//[16.06.2023, 21:30]
