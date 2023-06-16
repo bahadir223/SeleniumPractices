@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class C02_MetroTurizm {
@@ -35,6 +36,7 @@ public class C02_MetroTurizm {
 
     @Test
     public void test() {
+        Actions actions;
         //1)   metroturizm sitesine git
         driver.get("https://www.metroturizm.com.tr/");
         //Sayfa acildiginda Gidiş Dönüş radio button'a tikla.
@@ -71,6 +73,9 @@ public class C02_MetroTurizm {
 
         //Listele'ye tıkla
         driver.findElement(By.id("btnIndexSearchJourneys")).click();
+        actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+
 
         //Gidiş seferleri için en üstteki 3 butonun çalıştığını kontrol et
 
@@ -93,6 +98,8 @@ public class C02_MetroTurizm {
             bosKoltuklar = driver.findElements(By.xpath("//*[@ng-if='!col.isSold']"));
             bosKoltuklar.get(i).click();
             bekle(2);
+            actions = new Actions(driver);
+            actions.sendKeys(Keys.PAGE_DOWN).perform();
             System.out.println("Gidiş Seçilen koltuk No = " + bosKoltuklar.get(i).getText());
         }
         bekle(2);
@@ -122,18 +129,22 @@ public class C02_MetroTurizm {
         //ödeme sayfasına geç'e tıkla.
         driver.findElement(By.xpath("(//*[@id='btnDoPaymentPage'])[2]")).click();
         bekle(3);
-        Actions actions = new Actions(driver);
+        actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         bekle(2);
         //String kalkisTarihi = driver.findElement(By.xpath("(//tbody//tr//span)[3]")).getText();
         String kalkisTarihi = driver.findElement(By.cssSelector("[id='spanBoarding']")).getText();
 
-        System.out.println("buraya yaz.."+kalkisTarihi);
-        /*
-        String[] arr = kalkisTarihi.split(" ");
-        String[] arr2 =arr[0].split(".");
-        Assert.assertEquals(Integer.parseInt(arr2[0]),LocalDate.now().getDayOfMonth());
-        */
+        System.out.println("buraya yaz.." + kalkisTarihi);
+
+        String[] arr = kalkisTarihi.split("\\.");//16.06.2023 21:30
+        System.out.println(Arrays.toString(arr));//[16.06.2023, 21:30]
+        int ilk = Integer.valueOf(arr[0]);
+
+        int ayinKaciniGunu = LocalDate.now().getDayOfMonth();
+        Assert.assertEquals(ilk, ayinKaciniGunu);
+
+
     }
 
     public void bekle(int saniye) {
