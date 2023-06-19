@@ -19,6 +19,8 @@ public class C02_Github extends TestBase {
         actions.moveToElement(ekran).clickAndHold(ekran).moveByOffset(100, 100)  // 100 birim sağa, 100 birim aşağı
                 .moveByOffset(-100, 0)   // 100 birim sola
                 .moveByOffset(0, -100)   // 100 birim yukarı
+                .moveByOffset(-100, 0)   // 100 birim sola
+                .moveByOffset(0, -100)   // 100 birim yukarı
                 .moveByOffset(100, 0).perform();
 
 //        - Çizimden sonra clear butonuna basınız
