@@ -53,6 +53,5 @@ public class C03_ActionMoveToElement extends TestBase {
         driver.switchTo().window(pencereler.get(1));
         String actualTitle = driver.getTitle();
         Assert.assertTrue(actualTitle.contains("Elektronik"));
-
     }
 }
