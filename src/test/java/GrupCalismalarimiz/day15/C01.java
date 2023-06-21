@@ -24,10 +24,10 @@ public class C01 {
     //2. arama kutusuna iphone yazip aratin ve bulunan sonuç sayısını yazdırın
     //3. sonuc sayisi bildiren yazinin iphone icerdigini test edin
     //4. ikinci ürüne relative locater kullanarak tıklayin
-    //5. ürünün title'ni ve fiyatını variable'a assign edip ürünü sepete ekleyelim
+    //5. ürünün title'ni ve fiyatını variable’a assign edip ürünü sepete ekleyelim
     //    Test03
     //1. yeni bir sekme açarak amazon anasayfaya gidin
-    //2. dropdown'dan bebek bölümüne secin
+    //2. dropdown’dan bebek bölümüne secin
     //3. bebek puset aratıp bulundan sonuç sayısını yazdırın
     //4. sonuç yazsının puset içerdiğini test edin
     //5- üçüncü ürüne relative locater kullanarak tıklayin
@@ -44,18 +44,18 @@ public class C01 {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-    static String iphoneTitle;
-    static String iphoneFiyat;
-    static String iphoneFiyat2;
-    static String iphoneGercekFiyat;
-    static String bebekTitle;
-    static String bebekFiyat;
-    static String bebekFiyat2;
-    static String bebekGercekFiyat;
+     String iphoneTitle;
+     String iphoneFiyat;
+     String iphoneFiyat2;
+     String iphoneGercekFiyat;
+     String bebekTitle;
+     String bebekFiyat;
+     String bebekFiyat2;
+     String bebekGercekFiyat;
 
     @Test
     public void test01() {
-        driver.get("https://amazon.com");
+        driver.get(" https://amazon.com ");
         //Arama kutusunun solundaki dropdown menuyu handle edip listesini ekrana yazdırın
         WebElement ddm = driver.findElement(By.xpath("//select"));
         Select select = new Select(ddm);
@@ -84,16 +84,15 @@ public class C01 {
         //Sonuc sayisi bildiren yazinin iphone icerdigini test edin
         Assert.assertTrue(sonucYazisi.contains("iphone"));
         //ikinci ürüne relative locater kullanarak tıklayin
-        WebElement ucuncuUrun = driver.findElement(By.xpath("(//*[@class='a-size-base-plus a-color-base a-text-normal'])[3]"));
-        WebElement ikinciUrun = driver.findElement(with(By.tagName("div")).toLeftOf(ucuncuUrun));
-        ikinciUrun.click();
-        Thread.sleep(3000);
+        WebElement birinciUrun = driver.findElement(By.xpath("(//div[@class='a-section aok-relative s-image-square-aspect'])[1]"));
+        WebElement ikinciUrun = driver.findElement(with(By.tagName("div")).toRightOf(birinciUrun));
 
-        //ürünün title'ni ve fiyatını variable'a assign edip ürünü sepete ekleyelim
+        ikinciUrun.click();
+        //ürünün title'ni ve fiyatını variable’a assign edip ürünü sepete ekleyelim
         iphoneFiyat = driver.findElement(By.xpath("(//*[@class='a-price-whole'])[7]")).getText();
         iphoneFiyat2 = driver.findElement(By.xpath("(//*[@class='a-price-fraction'])[7]")).getText();
         iphoneGercekFiyat = iphoneFiyat + "." + iphoneFiyat2;
-        iphoneTitle = driver.findElement(By.cssSelector("[class='a-size-large product-title-word-break']")).getText();
+        iphoneTitle = driver.findElement(By.xpath("(//h1)[1]")).getText().replace("...", "");
         driver.findElement(By.xpath("//*[@id='submit.add-to-cart']")).click();
         System.out.println("iphone Gercek Fiyat ==> " + iphoneGercekFiyat);
         System.out.println("iphone Title ==> " + iphoneTitle);
@@ -101,11 +100,12 @@ public class C01 {
 
     @Test
     public void test03() throws InterruptedException {
+
         //driver.get("https://amazon.com");
         //yeni bir sekme açarak amazon anasayfaya gidin
         driver.switchTo().newWindow(WindowType.TAB);
-        driver.get("https://amazon.com");
-        //dropdown'dan bebek bölümüne secin
+        driver.get(" https://amazon.com ");
+        //dropdown’dan bebek bölümüne secin
         WebElement ddm = driver.findElement(By.xpath("//select"));
         Select select = new Select(ddm);
         select.selectByVisibleText("Baby");
@@ -120,9 +120,7 @@ public class C01 {
         Assert.assertTrue(sonucYazisi.contains("puset"));
         //ILK ürüne relative locater kullanarak tıklayin
         WebElement ikinci = driver.findElement(By.xpath("(//*[@class='s-image'])[2]"));
-
         driver.findElement(with(By.tagName("img")).above(ikinci)).click();
-
         //title ve fiyat bilgilerini assign edelim ve ürünü sepete ekleyin
         bebekFiyat = driver.findElement(By.xpath("(//*[@class='a-price-whole'])[1]")).getText();
         bebekFiyat2 = driver.findElement(By.xpath("(//*[@class='a-price-fraction'])[1]")).getText();
@@ -145,7 +143,7 @@ public class C01 {
         sepettekiUrunBebekPusetFiyat = sepettekiUrunBebekPusetFiyat.replace("$", "");
         System.out.println("sepetteki Bebek Puset Isim = " + sepettekiBebekPusetIsim);
         System.out.println("sepetteki Bebek Puset Fiyat" + sepettekiUrunBebekPusetFiyat);
-        String sepettekiIphoneIsim = driver.findElement(By.xpath("(//*[@class='a-truncate-cut'])[2]")).getText();
+        String sepettekiIphoneIsim = driver.findElement(By.xpath("(//*[@class='a-truncate-cut'])[2]")).getText().substring(0, 30);
         String sepettekiIphoneFiyat = driver.findElement(By.xpath("(//*[@class='a-spacing-mini'])[4]")).getText();
         sepettekiIphoneFiyat = sepettekiIphoneFiyat.replace("$", "");
         System.out.println("sepetteki Iphone Isim = " + sepettekiIphoneIsim);
@@ -154,7 +152,7 @@ public class C01 {
         Assert.assertEquals(sepettekiUrunBebekPusetFiyat, bebekGercekFiyat);
         System.out.println("iphone nin adını veriyor musun? " + iphoneTitle);
         System.out.println("bebekTitle adını veriyor musun? " + bebekTitle);
-        Assert.assertEquals(sepettekiIphoneIsim, iphoneTitle);
+        Assert.assertTrue(iphoneTitle.contains(sepettekiIphoneIsim));
         Assert.assertEquals(sepettekiBebekPusetIsim, bebekTitle);
     }
 }

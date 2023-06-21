@@ -31,7 +31,7 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <!-- Notasyonları kullanabilmek icin junit dependency'sini yükleriz.-->
+        <!-- Notasyonları (annotations) kullanabilmek icin junit dependency'sini yükleriz.-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

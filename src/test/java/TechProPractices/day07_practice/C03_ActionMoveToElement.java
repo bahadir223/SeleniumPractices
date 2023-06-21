@@ -39,6 +39,9 @@ public class C03_ActionMoveToElement extends TestBase {
         Select select = new Select(ddm);
         select.selectByVisibleText("Turkey (Türkiye)");
         bekle(2);
+        /*
+        menünün kapanıp go to website' in görünmesi icin sayfada herhangi bir yere tıklamamız gerekir.
+         */
         actions.moveToElement(driver.findElement(By.xpath("//*[text()='Turkey (Türkiye)']"))).click().perform();
         bekle(2);
         // Go to website butonuna tiklayiniz
