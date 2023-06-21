@@ -14,6 +14,7 @@ import java.util.List;
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class C01 {
+
     //    Test01
     //1- amazon gidin
     //2. Arama kutusunun solundaki dropdown menuyu handle edip listesini ekrana yazdırın
@@ -75,11 +76,12 @@ public class C01 {
     }
 
     @Test
-    public void test02() {
+    public void test02() throws InterruptedException {
         //dropdown menuden elektronik bölümü seçin
         WebElement ddm = driver.findElement(By.xpath("//select"));
         Select select = new Select(ddm);
         select.selectByVisibleText("Electronics");
+        Thread.sleep(3000);
         //arama kutusuna iphone yazip aratin ve bulunan sonuç sayısını yazdırın
         WebElement aramaKutusu = driver.findElement(By.id("twotabsearchtextbox"));
         aramaKutusu.sendKeys("iphone", Keys.ENTER);
@@ -96,6 +98,7 @@ public class C01 {
         ikinciUrun.click();
 
         //ürünün title'ni ve fiyatını variable’a assign edip ürünü sepete ekleyelim
+
         iphoneFiyat = driver.findElement(By.xpath("(//*[@class='a-price-whole'])[7]")).getText();
         iphoneFiyat2 = driver.findElement(By.xpath("(//*[@class='a-price-fraction'])[7]")).getText();
         iphoneGercekFiyat = iphoneFiyat + "." + iphoneFiyat2;
@@ -103,6 +106,8 @@ public class C01 {
         driver.findElement(By.xpath("//*[@id='submit.add-to-cart']")).click();
         System.out.println("iphone Gercek Fiyat ==> " + iphoneGercekFiyat);
         System.out.println("iphone Title ==> " + iphoneTitle);
+
+
     }
 
     @Test
@@ -123,7 +128,7 @@ public class C01 {
         //1-16 of 61 results for "bebek puset"
         String[] arr = sonucYazisi.split(" ");
         System.out.println("Bebek Puset Sonuc Sayisi = " + arr[2]);
-        //sonuç yazsının puset içerdiğini test edin
+        //sonuç yazısının puset içerdiğini test edin
         Assert.assertTrue(sonucYazisi.contains("puset"));
         //üçüncü ürüne relative locater kullanarak tıklayin
         WebElement ikinci = driver.findElement(By.xpath("(//*[@class='s-image'])[2]"));
@@ -144,6 +149,7 @@ public class C01 {
         //sepetteki ürünlerle eklediğimiz ürünlerin aynı olduğunu isim ve fiyat olarak doğrulayın
         //önce sepetim'e tıklıyoruz ki sepetteki ürünleri görebilelim.
         driver.findElement(By.xpath("(//*[@class='nav-line-2'])[3]")).click();
+        driver.manage().window().maximize();
         Thread.sleep(4000);
         String sepettekiBebekPusetIsim = driver.findElement(By.xpath("(//*[@class='a-truncate-cut'])[1]")).getText();
         String sepettekiUrunBebekPusetFiyat = driver.findElement(By.xpath("(//*[@class='a-spacing-mini'])[2]")).getText();
@@ -162,8 +168,9 @@ public class C01 {
 
         System.out.println("iphone nin adını veriyor musun? " + iphoneTitle);
         System.out.println("bebekTitle adını veriyor musun? " + bebekTitle);
-        //Assert.assertTrue(iphoneTitle.contains(sepettekiIphoneIsim));
-        //Assert.assertTrue(bebekTitle.contains(sepettekiBebekPusetIsim));
+        Assert.assertEquals(sepettekiIphoneIsim, iphoneTitle);
+        //Assert.assertEquals(sepettekiBebekPusetIsim, bebekTitle);
+
 
     }
 }
