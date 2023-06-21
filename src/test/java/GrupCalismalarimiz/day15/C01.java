@@ -130,9 +130,9 @@ public class C01 {
         System.out.println("Bebek Puset Sonuc Sayisi = " + arr[2]);
         //sonuç yazısının puset içerdiğini test edin
         Assert.assertTrue(sonucYazisi.contains("puset"));
-        //üçüncü ürüne relative locater kullanarak tıklayin
+        //ilk ürüne relative locater kullanarak tıklayin
         WebElement ikinci = driver.findElement(By.xpath("(//*[@class='s-image'])[2]"));
-        driver.findElement(with(By.tagName("img")).below(ikinci)).click();
+        driver.findElement(with(By.tagName("img")).above(ikinci)).click();
         //title ve fiyat bilgilerini assign edelim ve ürünü sepete ekleyin
         bebekFiyat = driver.findElement(By.xpath("(//*[@class='a-price-whole'])[1]")).getText();
         bebekFiyat2 = driver.findElement(By.xpath("(//*[@class='a-price-fraction'])[1]")).getText();
@@ -151,7 +151,7 @@ public class C01 {
         driver.findElement(By.xpath("(//*[@class='nav-line-2'])[3]")).click();
         driver.manage().window().maximize();
         Thread.sleep(4000);
-        String sepettekiBebekPusetIsim = driver.findElement(By.xpath("(//*[@class='a-truncate-cut'])[1]")).getText();
+        String sepettekiBebekPusetIsim = driver.findElement(By.xpath("(//*[@class='a-truncate-cut'])[1]")).getText().replace("...", "");
         String sepettekiUrunBebekPusetFiyat = driver.findElement(By.xpath("(//*[@class='a-spacing-mini'])[2]")).getText();
         sepettekiUrunBebekPusetFiyat = sepettekiUrunBebekPusetFiyat.replace("$", "");
         System.out.println("sepetteki Bebek Puset Isim = " + sepettekiBebekPusetIsim);
@@ -169,7 +169,7 @@ public class C01 {
         System.out.println("iphone nin adını veriyor musun? " + iphoneTitle);
         System.out.println("bebekTitle adını veriyor musun? " + bebekTitle);
         Assert.assertEquals(sepettekiIphoneIsim, iphoneTitle);
-        //Assert.assertEquals(sepettekiBebekPusetIsim, bebekTitle);
+        Assert.assertEquals(sepettekiBebekPusetIsim, bebekTitle);
 
 
     }
