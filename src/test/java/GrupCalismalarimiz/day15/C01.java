@@ -24,18 +24,16 @@ public class C01 {
     //2. arama kutusuna iphone yazip aratin ve bulunan sonuç sayısını yazdırın
     //3. sonuc sayisi bildiren yazinin iphone icerdigini test edin
     //4. ikinci ürüne relative locater kullanarak tıklayin
-    //5. ürünün title'ni ve fiyatını variable’a assign edip ürünü sepete ekleyelim
+    //5. ürünün title'ni ve fiyatını variable'a assign edip ürünü sepete ekleyelim
     //    Test03
     //1. yeni bir sekme açarak amazon anasayfaya gidin
-    //2. dropdown’dan bebek bölümüne secin
+    //2. dropdown'dan bebek bölümüne secin
     //3. bebek puset aratıp bulundan sonuç sayısını yazdırın
     //4. sonuç yazsının puset içerdiğini test edin
     //5- üçüncü ürüne relative locater kullanarak tıklayin
     //6- title ve fiyat bilgilerini assign edelim ve ürünü sepete ekleyin
     //    Test 4
     //1-sepetteki ürünlerle eklediğimiz ürünlerin aynı olduğunu isim ve fiyat olarak doğrulayın
-
-
     static WebDriver driver;
 
     @BeforeClass
@@ -44,20 +42,16 @@ public class C01 {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-
     }
 
     static String iphoneTitle;
     static String iphoneFiyat;
     static String iphoneFiyat2;
     static String iphoneGercekFiyat;
-
-
     static String bebekTitle;
     static String bebekFiyat;
     static String bebekFiyat2;
     static String bebekGercekFiyat;
-
 
     @Test
     public void test01() {
@@ -68,11 +62,9 @@ public class C01 {
         List<WebElement> menu = select.getOptions();
         for (int i = 0; i < menu.size(); i++) {
             System.out.println(menu.get(i).getText());
-
         }
         //dropdown menude 40 eleman olmadığını doğrulayın.
         Assert.assertNotEquals(40, menu.size());
-
     }
 
     @Test
@@ -91,23 +83,20 @@ public class C01 {
         System.out.println("iphone Sonuc Sayisi = " + arr[3]);
         //Sonuc sayisi bildiren yazinin iphone icerdigini test edin
         Assert.assertTrue(sonucYazisi.contains("iphone"));
-
         //ikinci ürüne relative locater kullanarak tıklayin
-        WebElement birinciUrun = driver.findElement(By.xpath("(//*[@class='s-image'])[1]"));
-        WebElement ikinciUrun = driver.findElement(with(By.tagName("div")).toRightOf(birinciUrun));
+        WebElement ucuncuUrun = driver.findElement(By.xpath("(//*[@class='a-size-base-plus a-color-base a-text-normal'])[3]"));
+        WebElement ikinciUrun = driver.findElement(with(By.tagName("div")).toLeftOf(ucuncuUrun));
         ikinciUrun.click();
+        Thread.sleep(3000);
 
-        //ürünün title'ni ve fiyatını variable’a assign edip ürünü sepete ekleyelim
-
+        //ürünün title'ni ve fiyatını variable'a assign edip ürünü sepete ekleyelim
         iphoneFiyat = driver.findElement(By.xpath("(//*[@class='a-price-whole'])[7]")).getText();
         iphoneFiyat2 = driver.findElement(By.xpath("(//*[@class='a-price-fraction'])[7]")).getText();
         iphoneGercekFiyat = iphoneFiyat + "." + iphoneFiyat2;
-        iphoneTitle = driver.findElement(By.xpath("(//h1)[1]")).getText();
+        iphoneTitle = driver.findElement(By.cssSelector("[class='a-size-large product-title-word-break']")).getText();
         driver.findElement(By.xpath("//*[@id='submit.add-to-cart']")).click();
         System.out.println("iphone Gercek Fiyat ==> " + iphoneGercekFiyat);
         System.out.println("iphone Title ==> " + iphoneTitle);
-
-
     }
 
     @Test
@@ -116,14 +105,13 @@ public class C01 {
         //yeni bir sekme açarak amazon anasayfaya gidin
         driver.switchTo().newWindow(WindowType.TAB);
         driver.get("https://amazon.com");
-        //dropdown’dan bebek bölümüne secin
+        //dropdown'dan bebek bölümüne secin
         WebElement ddm = driver.findElement(By.xpath("//select"));
         Select select = new Select(ddm);
         select.selectByVisibleText("Baby");
         // bebek puset aratıp bulundan sonuç sayısını yazdırın
         WebElement aramaKutusu = driver.findElement(By.id("twotabsearchtextbox"));
         aramaKutusu.sendKeys("bebek puset", Keys.ENTER);
-
         String sonucYazisi = driver.findElement(By.xpath("(//*[@class='sg-col-inner'])[1]")).getText();
         //1-16 of 61 results for "bebek puset"
         String[] arr = sonucYazisi.split(" ");
@@ -132,7 +120,9 @@ public class C01 {
         Assert.assertTrue(sonucYazisi.contains("puset"));
         //ILK ürüne relative locater kullanarak tıklayin
         WebElement ikinci = driver.findElement(By.xpath("(//*[@class='s-image'])[2]"));
+
         driver.findElement(with(By.tagName("img")).above(ikinci)).click();
+
         //title ve fiyat bilgilerini assign edelim ve ürünü sepete ekleyin
         bebekFiyat = driver.findElement(By.xpath("(//*[@class='a-price-whole'])[1]")).getText();
         bebekFiyat2 = driver.findElement(By.xpath("(//*[@class='a-price-fraction'])[1]")).getText();
@@ -141,7 +131,6 @@ public class C01 {
         driver.findElement(By.xpath("//*[@id='submit.add-to-cart']")).click();
         System.out.println("Bebek Puset Fiyatı = " + bebekGercekFiyat);
         System.out.println("Bebek Puset title = " + bebekTitle);
-
     }
 
     @Test
@@ -156,21 +145,16 @@ public class C01 {
         sepettekiUrunBebekPusetFiyat = sepettekiUrunBebekPusetFiyat.replace("$", "");
         System.out.println("sepetteki Bebek Puset Isim = " + sepettekiBebekPusetIsim);
         System.out.println("sepetteki Bebek Puset Fiyat" + sepettekiUrunBebekPusetFiyat);
-
         String sepettekiIphoneIsim = driver.findElement(By.xpath("(//*[@class='a-truncate-cut'])[2]")).getText();
         String sepettekiIphoneFiyat = driver.findElement(By.xpath("(//*[@class='a-spacing-mini'])[4]")).getText();
         sepettekiIphoneFiyat = sepettekiIphoneFiyat.replace("$", "");
         System.out.println("sepetteki Iphone Isim = " + sepettekiIphoneIsim);
         System.out.println("sepetteki Iphone Fiyat = " + sepettekiIphoneFiyat);
-
         Assert.assertEquals(sepettekiIphoneFiyat, iphoneGercekFiyat);
         Assert.assertEquals(sepettekiUrunBebekPusetFiyat, bebekGercekFiyat);
-
         System.out.println("iphone nin adını veriyor musun? " + iphoneTitle);
         System.out.println("bebekTitle adını veriyor musun? " + bebekTitle);
         Assert.assertEquals(sepettekiIphoneIsim, iphoneTitle);
         Assert.assertEquals(sepettekiBebekPusetIsim, bebekTitle);
-
-
     }
 }
