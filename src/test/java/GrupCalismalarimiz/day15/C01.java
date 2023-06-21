@@ -130,7 +130,7 @@ public class C01 {
         System.out.println("Bebek Puset Sonuc Sayisi = " + arr[2]);
         //sonuç yazısının puset içerdiğini test edin
         Assert.assertTrue(sonucYazisi.contains("puset"));
-        //ilk ürüne relative locater kullanarak tıklayin
+        //ILK ürüne relative locater kullanarak tıklayin
         WebElement ikinci = driver.findElement(By.xpath("(//*[@class='s-image'])[2]"));
         driver.findElement(with(By.tagName("img")).above(ikinci)).click();
         //title ve fiyat bilgilerini assign edelim ve ürünü sepete ekleyin

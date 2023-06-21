@@ -21,17 +21,29 @@ public class C02_Github extends TestBase {
          */
         WebElement ekran = driver.findElement(By.className("signature-pad--body"));
         Actions actions = new Actions(driver);
-        actions.clickAndHold(ekran).moveByOffset(100, 100)  // 100 birim sağa, 100 birim aşağı
-                .moveByOffset(-100, 0)
-                .moveByOffset(0, -100)
-                .moveByOffset(-100, 0)
-                .moveByOffset(0, -100)
-                .moveByOffset(100, 0).moveByOffset(40, 50).
-                moveByOffset(50, 60).
-                moveByOffset(60, 10).
-                moveByOffset(70, 15).
-                moveByOffset(80, 20).
-                moveByOffset(90, 30).release().perform();
+        actions.clickAndHold(ekran)
+                .moveByOffset(-50, 30)
+                .moveByOffset(-30, -30)
+                .moveByOffset(50, -30)
+                .moveByOffset(30, 50)
+                .moveByOffset(-50, 30)
+                .moveByOffset(-30, -30)
+                .moveByOffset(50, -30)
+                .moveByOffset(30, 50)
+                .moveByOffset(-50, 30)
+                .moveByOffset(-30, -30)
+                .moveByOffset(50, -30)
+                .moveByOffset(30, 50)
+                .moveByOffset(-50, 30)
+                .moveByOffset(-30, -30)
+                .moveByOffset(50, -30)
+                .moveByOffset(30, 50)
+                .moveByOffset(-50, 30)
+                .moveByOffset(-30, -30)
+                .moveByOffset(50, -30)
+                .moveByOffset(30, 50)
+                .release()
+                .perform();
 
 
         bekle(6);
