@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TestBase {
     /*
@@ -70,5 +72,12 @@ public abstract class TestBase {
     public void selectValue2(WebElement ddm, int idx) {
         Select select = new Select(ddm);
         select.selectByIndex(idx);
+    }
+
+    //SwitchTo Window
+    public void switchToWindow(int idx) {
+        List<String> pencereler = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(pencereler.get(idx));
+
     }
 }

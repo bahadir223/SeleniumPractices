@@ -7,9 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Duration;
+
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
@@ -22,15 +24,12 @@ public class C01_HepsiBurada extends TestBase {
     //Sepete ekle.
     //Ürün sepetinizde yazısının çıktığını doğrula.
     //Alışverişe devam et'e tıkla.
-    //Marka'dan Ege'yi seç, Fiyat aralığı 200 -500 gir, arama butonuna tıkla.
-    //Sıralama'dan yüksek puanlıları seçip son çıkan ürüne tıkla.
+    //Marka'dan 2.yi seç, Fiyat aralığı 200 -500 gir, arama butonuna tıkla.
+    //Sıralama'dan yüksek puanlıları seçip ilk çıkan ürüne tıkla.
     //Sepete ekle.
     //Ürün sepetinizde yazısının çıktığını doğrula.
     //Sepete Git'e tıkla.
     //Alışverişi tamamla butonuna tıkla.
-    //Yeni adres ekle'ye tıkla.
-    //Açılan sayfadan ad soyad telefon adres bilgileriniz i gir. Şehir , ilçe , mahalle seç. Adres gir. Bu adrese bir
-    //ad verini doldur. Adresi Kaydet' e tıkla.
 
 
     @Test
@@ -40,23 +39,6 @@ public class C01_HepsiBurada extends TestBase {
         bekle(2);
         WebElement cerezKabulEt = driver.findElement(By.cssSelector("[id='onetrust-accept-btn-handler']"));
         cerezKabulEt.click();
-        /*
-        //mouse ile giriş yap' ın üstüne gidip aşağıda açılan menüden giriş yap butonuna tıkla.
-        WebElement girisYap = driver.findElement(By.cssSelector("[data-test-id='account']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(girisYap).perform();
-        bekle(2);
-        driver.findElement(By.cssSelector("[id='login']")).click();
-        //e posta = yusufaltunok@hotmail.com yazıp Giriş Yap'a tıkla.
-        driver.findElement(By.xpath("(//*[@id='txtUserName'])[1]"))
-                .sendKeys("bahadir.223@hotmail.com", Keys.ENTER);
-        ////Şifre = Yusuf1977 ENTER'a bas.
-        WebElement password = driver.findElement(By.xpath("(//*[@id='txtPassword'])[1]"));
-
-        password.sendKeys("Bahadir.123");
-        actions.sendKeys(Keys.PAGE_DOWN).perform();
-        password.sendKeys(Keys.TAB, Keys.ENTER);
-        */
 
         //Ekrandaki Spor,Outdoor'un üzerine gelip aşağıda açılan Kamp Kampçılık Malzemelerinin altındaki Kamp Sandalyesine tıkla
         WebElement spor = driver.findElement(By.xpath("(//*[@class='sf-MenuItems-UHHCg2qrE5_YBqDV_7AC'])[6]"));
@@ -74,8 +56,7 @@ public class C01_HepsiBurada extends TestBase {
         WebElement ikinciUrun = driver.findElement(By.xpath("(//h3)[2]"));
         driver.findElement(with(By.tagName("h3")).below(ikinciUrun)).click();
         //ürüne tıklayınca istemimiz dışında yeni bir sekme açıldığı için bunları bir list'e atayıp çağırmamız gerek
-        List<String> pencereler = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(pencereler.get(1));
+        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         bekle(2);
         //Ürün başlığı ile fiyatını bir variable'a ata.
@@ -87,13 +68,56 @@ public class C01_HepsiBurada extends TestBase {
         System.out.println("Sandalye Fiyatı= " + sandalyeFiyat);
         //Sepete ekle.
         driver.findElement(By.cssSelector("[id='addToCart']")).click();
-        bekle(2);
-        //driver.switchTo().frame(0);
-        bekle(2);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='checkoutui-ProductOnBasketHeader-nOvp_U8bHbLzgKbSUFaz']")));
         //Ürün sepetinizde yazısının çıktığını doğrula.
         WebElement urunSepetinizde = driver.findElement(By.cssSelector("[class='checkoutui-ProductOnBasketHeader-nOvp_U8bHbLzgKbSUFaz']"));
         Assert.assertEquals("Ürün sepetinizde", urunSepetinizde.getText());
+        bekle(1);
+        //Alışverişe devam et'e tıkla.
+        driver.findElement(By.cssSelector("[class='checkoutui-ProductOnBasketHeader-zdTSacusLu4Cu0LDpmnB']")).click();
+        //Marka'dan 2. seç,ikincinin seçildiğini doğrula.
+        driver.findElement(By.xpath("(//*[@type='checkbox'])[11]")).click();
+        bekle(2);
+        driver.navigate().refresh();
+        WebElement marka = driver.findElement(By.cssSelector("[class='appliedVerticalFilter-pSOYt8wpwv9fUK7bNUjk']"));
+        Assert.assertTrue(marka.isDisplayed());
 
+        //Fiyat aralığı 200 -500 gir, arama butonuna tıkla.
+        driver.findElement(By.xpath("//*[text()='ürün listeleniyor']")).click();
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+
+        driver.findElement(By.cssSelector("[placeholder='En az']")).sendKeys("200", Keys.TAB, "500", Keys.TAB, Keys.ENTER);
+        bekle(2);
+        driver.navigate().refresh();
+        bekle(2);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        //Fiyat aralığını 200-500 seçildiğini test et.
+        Assert.assertTrue
+                (driver.findElement(By.xpath("(//*[@class='appliedVerticalFilter-rxdhhFDFaJiRVL0RqUW_'])[1]")).isDisplayed());
+        //Sıralama'dan yüksek puanlıları seçip ilk çıkan ürüne tıkla.
+        driver.findElement(By.cssSelector("[class='sorting-area']")).click();
+        driver.findElement(By.xpath("(//*[@class='horizontalSortingBar-PkoDOH7UsCwBrQaQx9bn'])[6]")).click();
+        bekle(2);
+        driver.findElement(By.xpath("(//h3)[1]")).click();
+        //Sepete ekle.
+        driver.switchTo().window(driver.getWindowHandles().toArray()[2].toString());
+        bekle(2);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+        driver.findElement(By.cssSelector("[id='addToCart']")).click();
+        //ürün sepetinizde'yi görene kadar bekledik.
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='checkoutui-ProductOnBasketHeader-nOvp_U8bHbLzgKbSUFaz']")));
+
+        //Ürün sepetinizde yazısının çıktığını doğrula.
+        WebElement urunSepetinizde1 = driver.findElement(By.cssSelector("[class='checkoutui-ProductOnBasketHeader-nOvp_U8bHbLzgKbSUFaz']"));
+        Assert.assertEquals("Ürün sepetinizde", urunSepetinizde1.getText());
+
+        //Sepete Git'e tıkla.
+        driver.findElement(By.xpath("(//*[@type='button'])[6]")).click();
+
+        //Alışverişi tamamla butonuna tıkla.
+        driver.findElement(By.id("continue_step_btn")).click();
 
     }
 }
