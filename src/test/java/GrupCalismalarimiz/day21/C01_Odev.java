@@ -1,5 +1,7 @@
 package GrupCalismalarimiz.day21;
 
+import org.junit.Test;
+
 public class C01_Odev {
     /*
         ODEV2
@@ -14,4 +16,8 @@ public class C01_Odev {
         Dosyayi kapatalim
     */
 
+    @Test
+    public void test01() {
+
+    }
 }
