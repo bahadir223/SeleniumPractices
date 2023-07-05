@@ -32,20 +32,22 @@ public class C03_SSClassWork extends TestBase {
         bekle(2);
 
         //Arama bölümünde java aratalım
-        driver.findElement(By.cssSelector("[role='search']")).sendKeys("java", Keys.ENTER);
+        driver.findElement(By.xpath("//*[@id='elementor-search-form-9f26725']")).sendKeys("java", Keys.ENTER);
         bekle(2);
 
         //ve sonuc yazısının resmini alalım
-        WebElement sonucYazisi = driver.findElement(By.xpath("//h1"));
-        String weDosyaYolu = "src/test/java/WebElementSS/screenShot" + tarih + ".jpg";
+        WebElement sonucYazisi = driver.findElement(By.xpath("(//*[@class='elementor-widget-container'])[6]"));
+        String tarih2 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
+        String weDosyaYolu = "src/test/java/WebElementSS/screenShot" + tarih2 + ".jpg";
+        FileUtils.copyFile(sonucYazisi.getScreenshotAs(OutputType.FILE), new File(weDosyaYolu));
 
         //Yeni bir sekmede amazona gidelim
         driver.switchTo().newWindow(WindowType.TAB);
         driver.get("https://amazon.com");
 
         //sayfanın resmini alalım
-        String tarih2 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
-        String dosyaYolu2 = "src/test/java/TumSayfaResmiSS/screenShot" + tarih2 + ".jpg";
+        String tarih3 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
+        String dosyaYolu2 = "src/test/java/TumSayfaResmiSS/screenShot" + tarih3 + ".jpg";
         TakesScreenshot ts2 = (TakesScreenshot) driver;
         FileUtils.copyFile(ts2.getScreenshotAs(OutputType.FILE), new File(dosyaYolu2));
         //arama bölümde iphone aratalım
@@ -53,13 +55,15 @@ public class C03_SSClassWork extends TestBase {
 
         //ve sonuc yazısının resmini alalım
         WebElement sonucYazisi2 = driver.findElement(By.xpath("(//*[@class='sg-col-inner'])[1]"));
-        String weDosyaYolu2 = "src/test/java/WebElementSS/screenShot" + tarih + ".jpg";
+        String tarih4 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
+        String weDosyaYolu2 = "src/test/java/WebElementSS/screenShot" + tarih4+ ".jpg";
+        FileUtils.copyFile(sonucYazisi2.getScreenshotAs(OutputType.FILE), new File(weDosyaYolu2));
 
 
         //tekrar tecpro sayfasına geçelim ve sayfa resmini alalım
         driver.switchTo().window(techProWindowHandle);
-        String tarih3 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
-        String dosyaYolu3 = "src/test/java/TumSayfaResmiSS/screenShot" + tarih3 + ".jpg";
+        String tarih5 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
+        String dosyaYolu3 = "src/test/java/TumSayfaResmiSS/screenShot" + tarih5 + ".jpg";
         TakesScreenshot ts3 = (TakesScreenshot) driver;
         FileUtils.copyFile(ts3.getScreenshotAs(OutputType.FILE), new File(dosyaYolu3));
     }
