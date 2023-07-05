@@ -20,6 +20,7 @@ public class C04_WriteExcel {
         workbook.getSheet("Sayfa1").getRow(0).createCell(4).setCellValue("Nufus");
         workbook.getSheet("Sayfa1").getRow(1).createCell(4).setCellValue(10);
         FileOutputStream fos = new FileOutputStream("src/test/java/resources/ulkeler.xlsx");
+        //dataları bizim class'imizdan ulkeler dosyasına göndereceğiz.
         workbook.write(fos);
         fos.close();
         workbook.close();
