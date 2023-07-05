@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class C04_ReadExcel {
     //Capitals.xlsx ' deki 1. Satır ve 1. sütun daki bilgileri yazdıralım
@@ -30,6 +32,16 @@ public class C04_ReadExcel {
         //Sayfadaki satır sayısını yazdırınız
         int sayfadakiSatirSay = workbook.getSheet("Sheet1").getLastRowNum();
         System.out.println("sayfadakiSatirSay = " + sayfadakiSatirSay);
+
+        //Ülke-Başkent şeklinde verileri yazdırın
+        Map<String, String> ulkeBaskent = new LinkedHashMap<>();
+        for (int i = 0; i < workbook.getSheet("Sheet1").getPhysicalNumberOfRows(); i++) {
+            String country = workbook.getSheet("Sheet1").getRow(i).getCell(0).toString();
+            String capital = workbook.getSheet("Sheet1").getRow(i).getCell(1).toString();
+            ulkeBaskent.put(country, capital + "\n");
+        }
+        System.out.println(ulkeBaskent);
+
 
     }
 }
