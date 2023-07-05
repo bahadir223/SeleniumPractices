@@ -17,7 +17,7 @@ public class C01_Odev {
     */
 
     @Test
-    public void test01() {
+    public void writeExcelTest() {
 
     }
 }
