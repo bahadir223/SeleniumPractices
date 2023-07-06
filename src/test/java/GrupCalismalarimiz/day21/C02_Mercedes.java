@@ -3,10 +3,7 @@ package GrupCalismalarimiz.day21;
 import Utilities.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebElement;
-
 
 public class C02_Mercedes extends TestBase {
     //sayfaya gidin cerezi kapatin
@@ -29,16 +26,6 @@ public class C02_Mercedes extends TestBase {
         searchContext.findElement(By.className("button")).click();
 
     }
-
-
-
-
-
-
-
-
-
-
 
     /*
            //https://www.mercedes-benz.com.tr/?group=all&subgroup=see-all&view=BODYTYPE

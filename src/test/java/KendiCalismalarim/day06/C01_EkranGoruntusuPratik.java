@@ -54,6 +54,5 @@ public class C01_EkranGoruntusuPratik extends TestBase {
         String dosyaYolu3 = "src/test/java/WebElementSS/screenShot" + tarih3 + ".jpg";
         FileUtils.copyFile(ilkFoto.getScreenshotAs(OutputType.FILE), new File(dosyaYolu3));
 
-
     }
 }
