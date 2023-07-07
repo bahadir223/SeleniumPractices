@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Selenium_JUnit_Practices" />
+        <module name="B151MavenJUnit" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Selenium&amp; JUnit Practices" target="11" />
+      <module name="Selenium_JUnit_Practices" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

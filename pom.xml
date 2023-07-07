@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Selenium_JUnit_Practices</artifactId>
+    <artifactId>B151MavenJUnit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,6 +13,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- ilk önce Selenium Java dependency'sini pom.xml dosyamıza mvnrepository.com adresinden alır koyarız -->
+    <!-- Selenium-java sürücüleri kontrol etmek icin gereken java sınıflarını ve methodlarını icerir.       -->
+    <!-- tüm dependency'leri dependencies tag'i icine koymamiz gerekir...  -->
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -45,6 +49,12 @@
             <version>1.0.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>4.0.9</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -57,9 +67,6 @@
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.3</version>
         </dependency>
-
-
-
 
     </dependencies>
 
