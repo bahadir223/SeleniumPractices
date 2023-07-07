@@ -44,6 +44,8 @@ public class C01_JSExecutorScroll extends TestBase {
         tumSayfaResmi();
 
         //Sayfayı en alta scroll yapalım
+        WebElement subscribe = driver.findElement(By.cssSelector("[type=\"submit\"]"));
+        js.executeScript("arguments[0].scrollIntoView(true);", subscribe);
 
         //Sayfayi en üste scroll yapalım
 
