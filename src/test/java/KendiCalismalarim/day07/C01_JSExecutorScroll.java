@@ -48,6 +48,8 @@ public class C01_JSExecutorScroll extends TestBase {
         js.executeScript("arguments[0].scrollIntoView(true);", subscribe);
 
         //Sayfayi en üste scroll yapalım
+        WebElement no = driver.findElement(By.xpath("(//*[@class='elementor-widget-container'])[2]"));
+        js.executeScript("arguments[0].scrollIntoView(true);", no);
 
     }
 }
