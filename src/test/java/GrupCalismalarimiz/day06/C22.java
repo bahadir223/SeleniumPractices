@@ -42,13 +42,13 @@ public class C22 {
         }
 
         //Click 'Products' button
-        driver.findElement(By.cssSelector("a[href='/products']")).click();
+        //driver.findElement(By.cssSelector("a[href='/products']")).click();
 
         //Hover over first product and click 'Add to cart'
-        driver.findElement(By.xpath("(//*[text()='Add to cart'])[1]")).click();
+        //driver.findElement(By.xpath("(//*[text()='Add to cart'])[1]")).click();
 
         //Click 'Continue Shopping' button
-        driver.findElement(By.linkText("Continue Shopping")).click();
+        //driver.findElement(By.linkText("Continue Shopping")).click();
 /*
         WebElement reklam = driver.findElement(By.id("//*[@id='dismiss-button']"));
 
