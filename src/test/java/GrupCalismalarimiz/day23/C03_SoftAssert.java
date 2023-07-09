@@ -1,4 +1,4 @@
-package KendiCalismalarim.day08;
+package GrupCalismalarimiz.day23;
 
 public class C03_SoftAssert {
     /*
