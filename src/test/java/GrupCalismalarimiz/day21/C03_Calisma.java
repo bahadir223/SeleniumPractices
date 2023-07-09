@@ -23,7 +23,7 @@ public class C03_Calisma extends TestBase {
         Bu şekilde normalde locate ettiğimiz halde alamadığımız locate'leri alacağızz........
          */
         SearchContext shadowRoot = driver.findElement(By.tagName("luigi-wc-2f77632f6c6973742e6a73")).getShadowRoot();
-        shadowRoot.findElement(By.cssSelector("[class=\"add-new-list-item-input\"]")).sendKeys("deneme");
+        shadowRoot.findElement(By.cssSelector("[type='text']")).sendKeys("deneme");
         WebElement privacy = driver.findElement(By.xpath("(//*[@class='fd-link svelte-1i4l3qp'])[1]"));
         bekle(2);
         privacy.click();
