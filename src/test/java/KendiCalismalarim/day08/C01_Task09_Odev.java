@@ -66,7 +66,13 @@ public class C01_Task09_Odev extends TestBase {
         WebElement chromeDoc = driver.findElement(By.cssSelector("[href='https://chromedriver.chromium.org/']"));
         js.executeScript("arguments[0].scrollIntoView(true);", chromeDoc);
         chromeDoc.click();
-        extentTest.info("Chrome driver bölümündeki documentation linkine tıklıandı");
+        extentTest.info("Chrome driver bölümündeki documentation linkine tıklandı");
+        //Documentation webelementinin resmini alalım
+        WebElement documentation = driver.findElement(By.xpath("(//*[@class='C9DxTc '])[19]"));
+        String tarih3 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
+        String dosyaYolu3 = "src/test/java/WebElementSS/screenShot" + tarih3 + ".jpg";
+        FileUtils.copyFile(documentation.getScreenshotAs(OutputType.FILE), new File(dosyaYolu3));
+        extentTest.info("Documentation webelementinin resmi alındı.");
 
     }
 }
