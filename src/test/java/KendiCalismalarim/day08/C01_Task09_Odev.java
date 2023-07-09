@@ -62,13 +62,14 @@ public class C01_Task09_Odev extends TestBase {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", browser);
         extentTest.info("Browsers bölümü görünene kadar sayfa aşağı indirildi.");
+
         //Browser bölümünden Chrome driver bölümündeki documentation linkine tıklıyalım
 
         js.executeScript("arguments[0].click();", browser);
 
         WebElement chromeDoc = driver.findElement(By.cssSelector("[href='https://chromedriver.chromium.org/']"));
         js.executeScript("arguments[0].scrollIntoView(true);", chromeDoc);
-        chromeDoc.click();
+        js.executeScript("arguments[0].click();", chromeDoc);
         extentTest.info("Chrome driver bölümündeki documentation linkine tıklandı");
         //Documentation webelementinin resmini alalım
         WebElement diger = driver.findElement(By.id("yDmH0d"));
