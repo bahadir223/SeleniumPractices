@@ -7,6 +7,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,11 +69,16 @@ public class C01_Task09_Odev extends TestBase {
         chromeDoc.click();
         extentTest.info("Chrome driver bölümündeki documentation linkine tıklandı");
         //Documentation webelementinin resmini alalım
-        WebElement documentation = driver.findElement(By.xpath("(//*[@class='C9DxTc '])[19]"));
+        WebElement diger = driver.findElement(By.id("yDmH0d"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(diger);
+        bekle(2);
+        WebElement documentation = driver.findElement(By.xpath("(//*[@href='/documentation'])[1]"));
         String tarih3 = new SimpleDateFormat("_hh_mm_ss_ddMMyyyy").format(new Date());
         String dosyaYolu3 = "src/test/java/WebElementSS/screenShot" + tarih3 + ".jpg";
         FileUtils.copyFile(documentation.getScreenshotAs(OutputType.FILE), new File(dosyaYolu3));
         extentTest.info("Documentation webelementinin resmi alındı.");
+        //All versions available in Downloads altında Latest stable release olan linki tıklayalım
 
     }
 }
