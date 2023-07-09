@@ -6,8 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,5 +57,10 @@ public class C01_Task09_Odev extends TestBase {
         FileUtils.copyFile(ts.getScreenshotAs(OutputType.FILE), new File(dosyaYolu2));
         extentTest.info("https://www.selenium.dev/downloads/ sayfasının resmi alındı.");
         //Platforms Supported by Selenium altındaki Browsers bölümü görünene kadar sayfayı indirelim
+        WebElement browser = driver.findElement(By.xpath("(//*[@type='button'])[87]"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", browser);
+        extentTest.info("Browsers bölümü görünene kadar sayfa aşağı indirildi.");
 
     }
+}
