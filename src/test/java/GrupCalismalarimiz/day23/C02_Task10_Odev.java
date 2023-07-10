@@ -43,7 +43,7 @@ public class C02_Task10_Odev extends TestBase {
         int toplam = 0;
         for (int i = 0; i < heightList.size(); i++) {
             String height = heightList.get(i).getText().replaceAll("m", "");
-            toplam = toplam + Integer.valueOf(height);
+            toplam = toplam + Integer.parseInt(height);
         }
         System.out.println("Otel uzunluklari toplami = " + toplam + " Metre");
 
