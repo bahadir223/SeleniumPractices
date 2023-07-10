@@ -45,9 +45,18 @@ public class C02_Task10_Odev extends TestBase {
             String height = heightList.get(i).getText().replaceAll("m", "");
             toplam = toplam + Integer.valueOf(height);
         }
-        System.out.println("Otel uzunluklari toplami = " + toplam);
+        System.out.println("Otel uzunluklari toplami = " + toplam + " Metre");
 
         //Bir method ile satır ve sutun bilgilerini çağıralım
+
+        satirSutunGetir(1, 1);
+
+    }
+
+    private void satirSutunGetir(int satir, int sutun) {
+        WebElement veri = driver.findElement(By.xpath("(//table)[2]//tr[" + satir + "]//td[" + sutun + "]"));
+        System.out.print(satir + ".satir " + sutun + ".sütun verisi = " + veri.getText());
+
 
     }
 }
