@@ -49,12 +49,12 @@ public class C02_Task10_Odev extends TestBase {
 
         //Bir method ile satır ve sutun bilgilerini çağıralım
 
-        satirSutunGetir(1, 1);
+        satirSutunGetir(4, 4);
 
     }
 
     private void satirSutunGetir(int satir, int sutun) {
-        WebElement veri = driver.findElement(By.xpath("(//table)[2]//tr[" + satir + "]//td[" + sutun + "]"));
+        WebElement veri = driver.findElement(By.xpath("(//table)[2]//tbody//tr[" + satir + "]//td[" + sutun + "]"));
         System.out.print(satir + ".satir " + sutun + ".sütun verisi = " + veri.getText());
 
 
